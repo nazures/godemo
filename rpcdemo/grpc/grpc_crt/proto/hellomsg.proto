@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package hellomsg;
+
+// 生成go文件
+// -I 的作用： 就是如果多个proto文件之间有互相依赖，生成某个proto文件时，需要import其他几个proto文件，这时候就要用-I来指定搜索目录。
+// protoc -I ../helloworld --go_out=plugins=grpc:../helloworld ../helloworld/helloworld.proto
+
+// 数据结构
+message HelloRequest {
+    string name = 1;
+}
+
+// 响应
+message HelloReply {
+    string message = 1;
+}
+
+
+// 方法接口
+service Greeter {
+    // 打个招呼
+    rpc SayHello (HelloRequest) returns (HelloReply) {}
+}
+
